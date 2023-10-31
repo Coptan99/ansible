@@ -1,0 +1,25 @@
+- name: Installing stow
+  ansible.builtin.package:
+    name: stow
+    state: present
+  tags:
+    - install
+    - dotfiles
+    - stow
+
+- name: Cloning .dotfiles
+  ansible.builtin.git:
+    repo: 'git@github.com:Coptan99/.dotfiles.git'
+    dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
+    version: master
+  tags:
+    - install
+    - dotfiles
+    - stow
+
+- name: Stowing directories
+  shell: cd $HOME/.dotfiles/ && stow .
+  tags:
+    - install
+    - dotfiles
+    - stow
