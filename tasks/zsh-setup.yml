@@ -1,6 +1,7 @@
 - name: Installing zsh
   ansible.builtin.package:
     - name: zsh
+  tags: &tags_for_zsh_tasks [ 'install', 'productivity', 'dotfiles', 'zsh' ]
 
 - name: Change shell to zsh
   shell: chsh -s $(which zsh)
