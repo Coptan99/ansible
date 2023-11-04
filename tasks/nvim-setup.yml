@@ -33,3 +33,11 @@
   tags:
     - install
     - neovim
+
+- name: Clone neovim config
+  ansible.builtin.git:
+    repo: 'https://github.com/Coptan99/init.lua'
+    dest: "{{ lookup('env', 'HOME') }}/.config/nvim"
+  tags:
+    - install
+    - neovim
